@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BlogSphere - Discover. Read. Share.</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="container navbar">
+
+            <a href="#" class="logo">
+                Blog<span>Sphere</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#blogs">Blogs</a>
+                <a href="#about">About</a>
+            </nav>
+
+            <button class="create-btn" onclick="openCreatePost()">
+                + Create Post
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <p class="hero-label">
+                        WELCOME TO BLOGSPHERE
+                    </p>
+
+                    <h1>
+                        Ideas worth
+                        <span>sharing.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Discover interesting stories, useful knowledge,
+                        personal experiences and fresh ideas from writers
+                        around the world.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#blogs" class="primary-btn">
+                            Explore Blogs
+                        </a>
+
+                        <button class="secondary-btn" onclick="openCreatePost()">
+                            Write a Blog
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="hero-card">
+
+                    <div class="hero-card-icon">
+                        ✍️
+                    </div>
+
+                    <h3>
+                        Your story matters.
+                    </h3>
+
+                    <p>
+                        Share your thoughts and experiences with
+                        people who love to read.
+                    </p>
+
+                    <div class="hero-card-line"></div>
+
+                    <div class="hero-stats">
+
+                        <div>
+                            <strong id="heroPostCount">0</strong>
+                            <span>Posts</span>
+                        </div>
+
+                        <div>
+                            <strong>100%</strong>
+                            <span>Free</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BLOG SECTION ================= -->
+
+        <section class="blogs-section" id="blogs">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="section-label">
+                            EXPLORE
+                        </p>
+
+                        <h2>
+                            Latest Blogs
+                        </h2>
+                    </div>
+
+                    <div class="search-container">
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search blogs..."
+                        >
+
+                        <button onclick="searchPosts()">
+                            🔍
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CATEGORY FILTERS -->
+
+                <div class="categories">
+
+                    <button
+                        class="category-btn active"
+                        onclick="filterPosts('All', this)">
+                        All
+                    </button>
+
+                    <button
+                        class="category-btn"
+                        onclick="filterPosts('Technology', this)">
+                        Technology
+                    </button>
+
+                    <button
+                        class="category-btn"
+                        onclick="filterPosts('Programming', this)">
+                        Programming
+                    </button>
+
+                    <button
+                        class="category-btn"
+                        onclick="filterPosts('Lifestyle', this)">
+                        Lifestyle
+                    </button>
+
+                    <button
+                        class="category-btn"
+                        onclick="filterPosts('Education', this)">
+                        Education
+                    </button>
+
+                </div>
+
+
+                <!-- BLOG CARDS -->
+
+                <div id="blogContainer" class="blog-grid">
+
+                    <!-- Blog posts will be loaded using JavaScript -->
+
+                </div>
+
+
+                <!-- NO RESULTS -->
+
+                <div id="noResults" class="no-results hidden">
+
+                    <div class="no-results-icon">
+                        📭
+                    </div>
+
+                    <h3>
+                        No blogs found
+                    </h3>
+
+                    <p>
+                        Try searching for something else.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT SECTION ================= -->
+
+        <section class="about-section" id="about">
+
+            <div class="container about-content">
+
+                <div class="about-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <p class="section-label">
+                        ABOUT BLOGSPHERE
+                    </p>
+
+                    <h2>
+                        A place for ideas,
+                        stories and knowledge.
+                    </h2>
+
+                    <p>
+                        BlogSphere is a simple blogging platform where
+                        people can create, discover and share meaningful
+                        content. Whether you're interested in technology,
+                        programming, education or everyday life, there's
+                        always something new to learn.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div>
+
+                <a href="#" class="logo">
+                    Blog<span>Sphere</span>
+                </a>
+
+                <p>
+                    Discover. Read. Share.
+                </p>
+
+            </div>
+
+            <p>
+                © <span id="currentYear"></span> BlogSphere.
+                Built as a college mini project.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= CREATE POST MODAL ================= -->
+
+    <div id="postModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <p class="section-label">
+                        CREATE
+                    </p>
+
+                    <h2>
+                        Write a Blog
+                    </h2>
+                </div>
+
+                <button
+                    class="close-btn"
+                    onclick="closeCreatePost()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="postForm">
+
+                <div class="form-group">
+
+                    <label for="postTitle">
+                        Blog Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="postTitle"
+                        placeholder="Enter your blog title"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="postAuthor">
+                            Author
+                        </label>
+
+                        <input
+                            type="text"
+                            id="postAuthor"
+                            placeholder="Your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="postCategory">
+                            Category
+                        </label>
+
+                        <select id="postCategory" required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Technology">
+                                Technology
+                            </option>
+
+                            <option value="Programming">
+                                Programming
+                            </option>
+
+                            <option value="Lifestyle">
+                                Lifestyle
+                            </option>
+
+                            <option value="Education">
+                                Education
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="postImage">
+                        Image URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="postImage"
+                        placeholder="https://example.com/image.jpg"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="postContent">
+                        Content
+                    </label>
+
+                    <textarea
+                        id="postContent"
+                        rows="7"
+                        placeholder="Write your blog here..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeCreatePost()">
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="submit-btn">
+                        Publish Blog
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= BLOG DETAIL MODAL ================= -->
+
+    <div id="blogModal" class="modal">
+
+        <div class="modal-content blog-detail-modal">
+
+            <button
+                class="close-btn detail-close"
+                onclick="closeBlogDetails()">
+                ×
+            </button>
+
+            <img
+                id="detailImage"
+                class="detail-image"
+                src=""
+                alt="Blog image"
+            >
+
+            <div class="detail-content">
+
+                <span id="detailCategory" class="blog-category">
+                </span>
+
+                <h2 id="detailTitle">
+                </h2>
+
+                <div class="detail-meta">
+
+                    <span>
+                        ✍️ <span id="detailAuthor"></span>
+                    </span>
+
+                    <span>
+                        📅 <span id="detailDate"></span>
+                    </span>
+
+                </div>
+
+                <div
+                    id="detailText"
+                    class="detail-text">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
